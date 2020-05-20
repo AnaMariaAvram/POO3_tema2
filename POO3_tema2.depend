@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1589893883 source:c:\users\avram\desktop\poo\poo3_tema2\main.cpp
+	<iostream>
+	<fstream>
+	<list>
+	<iostream>
+	<exception>
+	<string>
+	<cstring>
+
