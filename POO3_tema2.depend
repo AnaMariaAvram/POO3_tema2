@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1589893883 source:c:\users\avram\desktop\poo\poo3_tema2\main.cpp
+1590016755 source:c:\users\avram\desktop\poo\poo3_tema2\main.cpp
 	<iostream>
 	<fstream>
 	<list>
@@ -7,4 +7,6 @@
 	<exception>
 	<string>
 	<cstring>
+	<vector>
+	<typeinfo>
 

@@ -31,8 +31,8 @@ public:
     virtual ~Animal()=default;
     virtual void afisare ( )
     {
-        cout << "Numele animalului este " << (this->nume) << ". Greutatea animalului este  " << (this->greutate);
-        cout << ". Animalul are " << (this->nr_dinti) << " dinti. " << endl;
+        cout << "Numele animalului este " << (this->nume) <<"." << endl<< "Greutatea animalului este  " ;
+        cout << (this->greutate) << "." << endl << "Animalul are " << (this->nr_dinti) << " dinti. " << endl;
     }
     Animal& operator=(const Animal& ob)
     {
@@ -46,12 +46,12 @@ public:
 };
 istream &operator >>(istream & in, Animal & obj)
 {
-    cout << "Introduceti:" << endl;
+    cout << "Introduceti:" << endl ;
     cout << "Numele animalului: ";
     in >> obj.nume;
-    cout << endl << "Greutatea animalului: ";
+    cout << "Greutatea animalului: ";
     in >> obj.greutate;
-    cout << endl << "Numarul de dinti: " << '/n';
+    cout << "Numarul de dinti: " ;
     in >> obj.nr_dinti;
     return in;
 }
@@ -79,7 +79,7 @@ public:
     virtual void afisare ()
     {
         Animal::afisare();
-        cout << "Animalul este nevertebrat" << endl;
+        cout << "Animalul este nevertebrat." << endl;
     }
 };
 
@@ -119,7 +119,7 @@ public:
 istream &operator >>(istream & in, Vertebrate & obj)
 {
     in >> dynamic_cast<Animal&>(obj);
-    cout << "Numarul de picioare: " << '/n';
+    cout << "Numarul de picioare: " ;
     in >> obj.nr_picioare;
     return in;
 }
@@ -174,8 +174,7 @@ public:
     virtual ~Pesti()=default;
     virtual void afisare ()
     {
-        Animal::afisare();
-        cout << "Animalul are "<< nr_picioare <<" picioare." << endl;
+        Vertebrate::afisare();
         cout << "Animalul are " << (this->lungime) << " metri. " << endl;
         if(tip==0)
             cout << "Nu este peste rapitor." << endl;
@@ -185,14 +184,7 @@ public:
 };
 istream &operator >>(istream & in, Pesti & obj)
 {
-    cout << "Numele animalului: ";
-    in >> obj.nume;
-    cout << "Greutatea animalului: ";
-    in >> obj.greutate;
-    cout  << "Numarul de dinti: " ;
-    in >> obj.nr_dinti;
-    cout << "Numarul de picioare: ";
-    in >> obj.nr_picioare;
+    in >> dynamic_cast<Vertebrate&>(obj);
     cout << "Lungimea animalului: ";
     in >> obj.lungime;
     cout << "Tipul animalului:(1-rapitor,0- nu e rapitor): ";
@@ -233,25 +225,17 @@ public:
     }
     virtual void afisare ()
     {
-        Animal::afisare();
-        cout << "Animalul are "<< nr_picioare <<" picioare." << endl;
+        Vertebrate::afisare();
         cout << "Animalul ";
         if( tip_zbor==0)
-            cout<<"nu ";
+            cout << "nu ";
         cout << "zboara. ";
         cout << endl;
     }
 };
 istream &operator >>(istream & in, Pasari & obj)
 {
-    cout << "Numele animalului: ";
-    in >> obj.nume;
-    cout << "Greutatea animalului: ";
-    in >> obj.greutate;
-    cout  << "Numarul de dinti: " ;
-    in >> obj.nr_dinti;
-    cout << "Numarul de picioare: " ;
-    in >> obj.nr_picioare;
+    in >> dynamic_cast<Vertebrate&>(obj);
     cout << "Tipul zborului (1-zboara,0-nu zboara): ";
     in >> obj.tip_zbor;
     return in;
@@ -290,8 +274,7 @@ public:
     virtual ~Mamifere()=default;
     virtual void afisare ()
     {
-        Animal::afisare();
-        cout << "Animalul are "<< nr_picioare <<" picioare." << endl;
+        Vertebrate::afisare();
         cout << "Animalul ";
         if( tip_mamifer==0)
             cout<<"fac oua. ";
@@ -303,14 +286,7 @@ public:
 };
 istream &operator >>(istream & in, Mamifere & obj)
 {
-    cout << "Numele animalului: ";
-    in >> obj.nume;
-    cout << "Greutatea animalului: ";
-    in >> obj.greutate;
-    cout  << "Numarul de dinti: " ;
-    in >> obj.nr_dinti;
-    cout << "Numarul de picioare: " ;
-    in >> obj.nr_picioare;
+    in >> dynamic_cast<Vertebrate&>(obj);
     cout << "Tipul mamiferului (1-naste pui vii,0-face oua): " ;
     in >> obj.tip_mamifer;
     return in;
@@ -347,21 +323,13 @@ public:
     virtual ~Reptile()=default;
     virtual void afisare ()
     {
-        Animal::afisare();
-        cout << "Animalul are "<< nr_picioare <<" picioare." << endl;
-        cout<< "Animalul este " << this->culoare <<"." << '/n';
+        Vertebrate::afisare();
+        cout<< "Animalul este " << this->culoare <<"." << endl;
     }
 };
 istream &operator >>(istream & in, Reptile & obj)
 {
-    cout << "Numele animalului: ";
-    in >> obj.nume;
-    cout << "Greutatea animalului: ";
-    in >> obj.greutate;
-    cout  << "Numarul de dinti: " ;
-    in >> obj.nr_dinti;
-    cout << "Numarul de picioare: " ;
-    in >> obj.nr_picioare;
+    in >> dynamic_cast<Vertebrate&>(obj);
     cout << "Culoarea animalului: " ;
     in >> obj.culoare;
     return in;
@@ -431,7 +399,7 @@ public:
     }
     virtual void Afis()
     {
-        cout << "Animale" << endl;
+        cout << "Animalele sunt:" << endl;
         for(int i=0; i<cnt; i++)
             cout << regn[i] << endl;
     }
@@ -443,10 +411,10 @@ public:
 istream& operator>>(istream& in, AtlasZoologic<Mamifere>& ob)
 {
 
-    cout << "Cate mamifere doriti sa introduceti? ";
+    cout << "Introduceti numarul de mamifere: ";
     in >> ob.cnt;
     AtlasZoologic <Mamifere>::nr_animale += ob.cnt;
-    cout << "Introduceti mamiferele" << endl;
+    cout << "Introduceti mamiferele:" << endl;
     for(int i=0; i<ob.cnt; i++)
     {
         cin >> ob.regn[i];
@@ -456,10 +424,10 @@ istream& operator>>(istream& in, AtlasZoologic<Mamifere>& ob)
 
 istream& operator>>(istream& in, AtlasZoologic<Pasari>& ob)
 {
-    cout << "Cate pasari doriti sa introduceti? ";
+    cout << "Introduceti numarul de pasari:";
     in >> ob.cnt;
     AtlasZoologic<Pasari>::nr_animale += ob.cnt;
-    cout<<"Introduceti pasarile.\n";
+    cout << "Introduceti pasarile:"<< endl;
     for(int i=0; i<ob.cnt; i++)
         cin >> ob.regn[i];
     return in;
@@ -467,10 +435,10 @@ istream& operator>>(istream& in, AtlasZoologic<Pasari>& ob)
 
 istream& operator>>(istream& in, AtlasZoologic<Reptile>& ob)
 {
-    cout << "Cate reptile doriti sa introduceti? ";
+    cout << "Introduceti numarul de reptile: ";
     in >> ob.cnt;
     AtlasZoologic<Reptile>::nr_animale += ob.cnt;
-    cout << "Introduceti reptilele.\n";
+    cout << "Introduceti reptilele:" << endl;
     for(int i=0; i<ob.cnt; i++)
         cin >> ob.regn[i];
     return in;
@@ -531,7 +499,7 @@ public:
         for(int i=0; i<cnt; i++)
             if(regn[i].getTip() == 1 && regn[i].getLungime() > 1)
                 numar++;
-        cout << "Sunt rapitori si au lungimea mai mare de un metru " << numar << " pesti" << endl;
+        cout<< numar << " pesti sunt rapitori cu o lungimea mai mare de un metru " << endl;
     }
     friend istream& operator>>(istream&, AtlasZoologic<Pesti>&);
     friend ostream& operator<<(ostream&, AtlasZoologic<Pesti>&);
@@ -539,10 +507,10 @@ public:
 
 istream& operator>>(istream& in, AtlasZoologic<Pesti>& ob)
 {
-    cout << "Cati pesti doriti sa introduceti? ";
+    cout << "Introduceti numarul de pesti:";
     in >> ob.cnt;
     AtlasZoologic<Pesti>::nr_animale += ob.cnt;
-    cout << "Introduceti pestii.\n";
+    cout << "Introduceti pestii:" << endl;
     for(int i=0; i<ob.cnt; i++)
         cin >> ob.regn[i];
     return in;
